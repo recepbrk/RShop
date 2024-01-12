@@ -7,22 +7,22 @@
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.rshop.ProfileFragment"
+        android:name="com.example.rshop.ui.fragment.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.rshop.HomeFragment"
+        android:name="com.example.rshop.ui.fragment.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/basketFragment"
-        android:name="com.example.rshop.BasketFragment"
+        android:name="com.example.rshop.ui.fragment.basket.BasketFragment"
         android:label="fragment_basket"
         tools:layout="@layout/fragment_basket" />
     <fragment
         android:id="@+id/saveFragment"
-        android:name="com.example.rshop.SaveFragment"
+        android:name="com.example.rshop.ui.fragment.save.SaveFragment"
         android:label="fragment_save"
         tools:layout="@layout/fragment_save" />
 </navigation>

@@ -1,6 +1,6 @@
 
 
-package com.example.rshop
+package com.example.rshop.ui.fragment.home
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

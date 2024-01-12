@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".data.AllProductFragment">
+    android:id="@+id/fragment_container"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fontFamily="@font/poppins_medium"
-        android:text="@string/hello_blank_fragment" />
 
+ <androidx.recyclerview.widget.RecyclerView
+     android:id="@+id/recycler_view_all"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:transitionGroup="true"
+     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+     app:spanCount="2"
+     android:orientation="vertical"
+     app:layout_constraintBottom_toBottomOf="parent"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintStart_toStartOf="parent"
+     tools:listitem="@layout/product_item"
+     app:layout_constraintTop_toTopOf="parent" >
+
+ </androidx.recyclerview.widget.RecyclerView>
 </FrameLayout>

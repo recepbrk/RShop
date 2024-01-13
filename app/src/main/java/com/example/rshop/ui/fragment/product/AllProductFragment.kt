@@ -5,13 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.rnote.adapter.ProductAdapter
 import com.example.rshop.data.model.ProductModel
 import com.example.rshop.databinding.FragmentAllProductBinding
-import com.example.rshop.ui.activity.MainActivity
 import com.example.rshop.util.resource.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,9 +33,6 @@ class AllProductFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        productAdapter=ProductAdapter()
-        binding.recyclerViewAll.adapter = productAdapter
-        binding.recyclerViewAll.setHasFixedSize(true)
      initObserve()
 
     }
@@ -46,17 +41,19 @@ private fun initObserve(){
         when (response) {
             is Resource.Success -> {
                 response.data?.let {
-                    productAdapter.differ.submitList(it)
+                    initAdapter(it)
                 }
+                binding.progressBar.visibility = View.GONE
+
             }
 
             is Resource.Error -> {
+                binding.progressBar.visibility = View.VISIBLE
                 Toast.makeText(context, "Hata var !! ", Toast.LENGTH_SHORT).show()
             }
 
             is Resource.Loading -> {
-           //    binding.progressBar.isVisible
-                Toast.makeText(context, "Loading !! ", Toast.LENGTH_SHORT).show()
+                binding.progressBar.visibility = View.VISIBLE
 
             }
 

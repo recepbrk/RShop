@@ -1,4 +1,5 @@
-package com.example.rshop.ui.fragment.product
+package com.example.rshop.ui.fragment.jewelery
+
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,24 +9,23 @@ import com.example.rshop.util.resource.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
-
 @HiltViewModel
-class AllProductViewModel @Inject constructor(private val productRepository: ProductRepository) : ViewModel() {
+class JeweleryViewModel @Inject constructor(private val productRepository: ProductRepository):ViewModel() {
 
-    val getProductList: MutableLiveData<Resource<List<ProductModel>>> = MutableLiveData()
+    val getJeweleryList: MutableLiveData<Resource<List<ProductModel>>> = MutableLiveData()
 
-    init {
-        getAllProduct()
+
+
+    fun getJewelery(category: String) = viewModelScope.launch {
+        getJeweleryList.postValue(handleResponse(productRepository.getDifferentCategory(category)))
     }
-    fun getAllProduct() = viewModelScope.launch{
-        getProductList.postValue(handleResponse(productRepository.getAllProduct()))
-    }
 
-    private fun handleResponse(response: Resource<List<ProductModel>>) =
+
+    private fun handleResponse(response: Resource<List<ProductModel>>): Resource<List<ProductModel>> =
         when (response) {
             is Resource.Success -> Resource.Success(response.data.orEmpty())
             is Resource.Error -> Resource.Error(response.message.orEmpty())
             is Resource.Loading -> Resource.Loading()
         }
+
 }

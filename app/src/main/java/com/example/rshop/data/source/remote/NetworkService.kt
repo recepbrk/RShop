@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface NetworkService {
-    @GET("products")
+    @GET(Constants.ALL_PRODUCT)
     suspend fun getAllData(): List<ProductModel>
 
     @GET(Constants.DIFFERENT_CATEGORY)
@@ -15,6 +15,6 @@ interface NetworkService {
         @Path("category") category: String
     ): List<ProductModel>
 
-    @GET("products/{id}")
+    @GET(Constants.DETAILS_PRODUCT)
     fun getSingleProduct(@Path("id") id:Int) : Call<ProductModel>
 }

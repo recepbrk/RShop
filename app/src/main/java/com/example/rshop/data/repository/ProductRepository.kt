@@ -13,6 +13,12 @@ class ProductRepository @Inject constructor(private val networkService:NetworkSe
     }catch (exception:Exception){
         Resource.Error(exception.message.orEmpty())
     }
+    suspend fun getFiveProduct()=try {
+        Resource.Success(networkService.getFiveProduct())
+    }catch (exception:Exception){
+        Resource.Error(exception.message.orEmpty())
+
+    }
 
     suspend fun getDifferentCategory(category:String)=try{
         Resource.Success(networkService.getDifferentCategory(category))

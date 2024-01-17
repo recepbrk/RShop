@@ -32,7 +32,14 @@ class ProductAdapter() : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>(
             binding.apply {
                 allTitle.text = product.title
                 allPrice.text = "$" + product.price.toString()
+                ratingbar.rating = product.rating.rate.toFloat()
+                allStar.text = product.rating.rate.toFloat().toString()
                 Glide.with(itemView).load(product.image).into(binding.allImg)
+                binding.root.setOnClickListener {
+                    onItemClickListener?.let {
+                        it(product)
+                    }
+                }
             }
         }
     }
@@ -46,9 +53,14 @@ class ProductAdapter() : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>(
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-      holder.bind(differ.currentList[position])
+        holder.bind(differ.currentList[position])
 
 
+    }
 
+    private var onItemClickListener: ((ProductModel) -> Unit)? = null
+
+    fun setOnItemClickListener(listener: (ProductModel) -> Unit) {
+        onItemClickListener = listener
     }
 }

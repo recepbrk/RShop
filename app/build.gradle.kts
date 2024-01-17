@@ -94,4 +94,8 @@ dependencies {
     //Image Loading
     implementation("com.github.bumptech.glide:glide:4.14.2")
     kapt("com.github.bumptech.glide:compiler:4.14.2")
+
+    //Image Slider
+
+
 }

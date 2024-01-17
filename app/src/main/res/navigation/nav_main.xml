@@ -14,7 +14,26 @@
         android:id="@+id/homeFragment"
         android:name="com.example.rshop.ui.fragment.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_manClothesFragment"
+            app:destination="@id/manClothesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_allProductFragment"
+            app:destination="@id/allProductFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_jeweleryFragment"
+            app:destination="@id/jeweleryFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_electronicFragment"
+            app:destination="@id/electronicFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_womanClothesFragment"
+            app:destination="@id/womanClothesFragment" />
+    </fragment>
     <fragment
         android:id="@+id/basketFragment"
         android:name="com.example.rshop.ui.fragment.basket.BasketFragment"
@@ -25,4 +44,33 @@
         android:name="com.example.rshop.ui.fragment.save.SaveFragment"
         android:label="fragment_save"
         tools:layout="@layout/fragment_save" />
+    <fragment
+        android:id="@+id/allProductFragment"
+        android:name="com.example.rshop.ui.fragment.product.AllProductFragment"
+        android:label="AllProductFragment" />
+    <fragment
+        android:id="@+id/electronicFragment"
+        android:name="com.example.rshop.ui.fragment.electronic.ElectronicFragment"
+        android:label="fragment_electronic"
+        tools:layout="@layout/fragment_electronic" />
+    <fragment
+        android:id="@+id/jeweleryFragment"
+        android:name="com.example.rshop.ui.fragment.jewelery.JeweleryFragment"
+        android:label="fragment_jewelery"
+        tools:layout="@layout/fragment_jewelery" />
+    <fragment
+        android:id="@+id/manClothesFragment"
+        android:name="com.example.rshop.ui.fragment.man.ManClothesFragment"
+        android:label="fragment_man_clothes"
+        tools:layout="@layout/fragment_man_clothes" />
+    <fragment
+        android:id="@+id/womanClothesFragment"
+        android:name="com.example.rshop.ui.fragment.woman.WomanClothesFragment"
+        android:label="fragment_woman_clothes"
+        tools:layout="@layout/fragment_woman_clothes" />
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.example.rshop.ui.fragment.ProductDetailsFragment"
+        android:label="fragment_product_details"
+        tools:layout="@layout/fragment_product_details" />
 </navigation>

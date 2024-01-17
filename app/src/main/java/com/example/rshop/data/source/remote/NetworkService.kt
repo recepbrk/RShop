@@ -9,6 +9,8 @@ import retrofit2.http.Path
 interface NetworkService {
     @GET(Constants.ALL_PRODUCT)
     suspend fun getAllData(): List<ProductModel>
+    @GET("products?limit=5")
+    suspend fun getFiveProduct():List<ProductModel>
 
     @GET(Constants.DIFFERENT_CATEGORY)
     suspend fun getDifferentCategory(

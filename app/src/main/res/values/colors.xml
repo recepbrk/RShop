@@ -5,4 +5,8 @@
     <color name="white1">#EFEBEB</color>
     <color name="purple500">#9C27B0</color>
     <color name="purple700">#673AB7</color>
+    <color name="yellow">#FF9529</color>
+    <color name="grey">#8C8C8B</color>
+    <color name="bej">#db978a</color>
+
 </resources>

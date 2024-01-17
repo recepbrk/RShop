@@ -12,4 +12,9 @@
             <item name="android:textColor">@color/black</item>
         </style>
     <style name="Theme.RShop" parent="Base.Theme.RShop" />
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/grey</item>
+        <item name="colorControlActivated">@color/yellow</item>
+    </style>
 </resources>

@@ -16,9 +16,6 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_productDetailsFragment"
-            app:destination="@id/productDetailsFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_manClothesFragment"
             app:destination="@id/manClothesFragment" />
         <action
@@ -47,7 +44,11 @@
     <fragment
         android:id="@+id/allProductFragment"
         android:name="com.example.rshop.ui.fragment.product.AllProductFragment"
-        android:label="AllProductFragment" />
+        android:label="AllProductFragment" >
+        <action
+            android:id="@+id/action_allProductFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/electronicFragment"
         android:name="com.example.rshop.ui.fragment.electronic.ElectronicFragment"
@@ -70,7 +71,11 @@
         tools:layout="@layout/fragment_woman_clothes" />
     <fragment
         android:id="@+id/productDetailsFragment"
-        android:name="com.example.rshop.ui.fragment.ProductDetailsFragment"
+        android:name="com.example.rshop.ui.fragment.details.ProductDetailsFragment"
         android:label="fragment_product_details"
-        tools:layout="@layout/fragment_product_details" />
+        tools:layout="@layout/fragment_product_details" >
+        <argument
+            android:name="arg_details"
+            app:argType="com.example.rshop.data.model.ProductModel" />
+    </fragment>
 </navigation>

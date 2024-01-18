@@ -20,7 +20,7 @@ class HomeViewModel @Inject constructor(private val productRepository: ProductRe
         getFiveProduct()
     }
 
-    private fun getFiveProduct() = viewModelScope.launch {
+     fun getFiveProduct() = viewModelScope.launch {
         getFiveProductList.postValue(handleResponse(productRepository.getFiveProduct()))
     }
 

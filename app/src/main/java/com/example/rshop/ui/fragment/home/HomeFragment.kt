@@ -93,8 +93,7 @@ class HomeFragment : Fragment() {
 
                     }
                     productAdapter.setOnItemClickListener {
-                        val navController = findNavController()
-                        navController.navigate(R.id.action_homeFragment_to_productDetailsFragment)
+
 
                     }
                 }

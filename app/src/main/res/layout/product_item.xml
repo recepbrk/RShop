@@ -2,88 +2,92 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="250dp"
+    android:id="@+id/card_View"
+    android:layout_width="180dp"
+    android:layout_height="300dp"
     android:layout_margin="10dp"
     android:elevation="8dp"
     app:cardCornerRadius="20dp"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="#FFFFFF">
 
 
         <ImageView
             android:id="@+id/all_img"
-            android:layout_width="160dp"
-            android:layout_height="130dp"
-
+            android:layout_width="161dp"
+            android:layout_height="150dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.526"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintVertical_bias="0.046"
             />
 
+
         <TextView
-            android:id="@+id/allPrice"
+            android:id="@+id/all_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$ 33.00"
             android:fontFamily="@font/poppins_medium"
-            android:textColor="#db978a"
+            android:text="20$"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.121"
+            app:layout_constraintHorizontal_bias="0.111"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.882" />
+            app:layout_constraintVertical_bias="0.939" />
 
         <TextView
-            android:id="@+id/allStar"
+            android:id="@+id/all_star"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="4.3"
+            android:text="3.5"
             android:textColor="@color/black"
-            android:textSize="10sp"
-
+            android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.56"
+            app:layout_constraintHorizontal_bias="0.563"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.703" />
+            app:layout_constraintVertical_bias="0.79" />
 
         <RatingBar
             android:id="@+id/ratingbar"
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="84dp"
+            android:layout_marginBottom="64dp"
             android:isIndicator="true"
             android:numStars="5"
             android:stepSize="0.1"
             android:theme="@style/RatingBar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.114"
+            app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/allTitle"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/allTitle"
-            android:layout_width="185dp"
-            android:layout_height="34dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="Nike Sportswear Jacket"
+            android:maxLength="25"
+            android:text="title"
             android:textAlignment="center"
-            android:maxLength="20"
             android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="normal"
@@ -92,7 +96,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.601" />
+            app:layout_constraintVertical_bias="0.621" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

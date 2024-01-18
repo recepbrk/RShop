@@ -1,9 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.RShop" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:statusBarColor">#E6EAE9</item>
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <item name="colorPrimary">@color/bej</item>
+        <item name="colorPrimaryVariant">@color/bej</item>
+        <item name="android:statusBarColor">@color/bej</item>
     </style>
         <style name="TabLayoutTextStyle">
             <item name="android:textStyle">normal</item>

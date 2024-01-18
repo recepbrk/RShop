@@ -48,8 +48,8 @@ private fun initObserve(){
                 }
                 binding.progressBar.visibility = View.GONE
                 productAdapter.setOnItemClickListener {
-                    val navController =findNavController()
-                    navController.navigate(R.id.action_homeFragment_to_productDetailsFragment)
+                   val action=AllProductFragmentDirections.actionAllProductFragmentToProductDetailsFragment(it)
+                    findNavController().navigate(action)
                 }
 
             }

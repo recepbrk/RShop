@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.rnote.adapter.ProductAdapter
 import com.example.rshop.data.model.ProductModel
 import com.example.rshop.databinding.FragmentJeweleryBinding
@@ -31,6 +32,7 @@ class JeweleryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         jeweleryViewModel.getJewelery("jewelery")
         initObserve()
+        backButton()
     }
 
     private fun initObserve() {
@@ -40,6 +42,13 @@ class JeweleryFragment : Fragment() {
                 is Resource.Success -> {
                     response.data?.let {
                         initadapter(it)
+                        jeweleryAdapter.setOnItemClickListener {
+                            val action =
+                                JeweleryFragmentDirections.actionJeweleryFragmentToProductDetailsFragment(
+                                    it
+                                )
+                            findNavController().navigate(action)
+                        }
                     }
                     binding.progressBar.visibility = View.GONE
                 }
@@ -66,5 +75,11 @@ class JeweleryFragment : Fragment() {
         jeweleryAdapter.differ.submitList(list)
     }
 
+    private fun backButton() {
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
 
+
+    }
 }

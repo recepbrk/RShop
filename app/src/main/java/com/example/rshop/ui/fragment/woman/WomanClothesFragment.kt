@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.rnote.adapter.ProductAdapter
 import com.example.rshop.data.model.ProductModel
 import com.example.rshop.databinding.FragmentWomanClothesBinding
@@ -37,6 +38,7 @@ class WomanClothesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         womanViewModel.getWomanClothes("women\'s clothing")
         initObserve()
+        backButton()
     }
 
     private fun initObserve() {
@@ -44,7 +46,12 @@ class WomanClothesFragment : Fragment() {
             when (response) {
                 is Resource.Success -> {
                     response.data?.let {
+
                         initAdapter(it)
+                        womanAdapter.setOnItemClickListener {
+                            val action=WomanClothesFragmentDirections.actionWomanClothesFragmentToProductDetailsFragment(it)
+                            findNavController().navigate(action)
+                        }
                     }
                     binding.progressBar.visibility = View.GONE
                 }
@@ -62,7 +69,11 @@ class WomanClothesFragment : Fragment() {
             }
         }
     }
-
+    private fun backButton(){
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+    }
     private fun initAdapter(list: List<ProductModel>) {
         womanAdapter = ProductAdapter()
         binding.recyclerViewWoman.adapter = womanAdapter

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.rshop.databinding.FragmentProductDetailsBinding
@@ -33,6 +34,7 @@ class ProductDetailsFragment : Fragment() {
 
         productDetailsViewModel.getDetails(args.argDetails.id)
         initObserve()
+        backButton()
     }
 
 
@@ -43,7 +45,7 @@ class ProductDetailsFragment : Fragment() {
 
                     response.data?.let {
                         binding.detailsTitle.text = it.title
-                        binding.detailsPrice.text ="$"+it.price.toString()
+                        binding.detailsPrice.text = "$" + it.price.toString()
                         binding.ratingbar.rating = it.rating.rate.toString().toFloat()
                         binding.detailsStar.text = it.rating.rate.toString()
                         binding.detailesDescription.text = it.description
@@ -70,5 +72,11 @@ class ProductDetailsFragment : Fragment() {
         }
     }
 
+    private fun backButton() {
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
 
+
+    }
 }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.rnote.adapter.ProductAdapter
 import com.example.rshop.R
 import com.example.rshop.data.model.ProductModel
@@ -17,14 +18,14 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ManClothesFragment : Fragment() {
     private lateinit var binding: FragmentManClothesBinding
-    private val manClothesViewModel:ManClothesViewModel  by viewModels()
-    lateinit var manClothesAdapter:ProductAdapter
+    private val manClothesViewModel: ManClothesViewModel by viewModels()
+    lateinit var manClothesAdapter: ProductAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       binding= FragmentManClothesBinding.inflate(inflater,container,false)
+        binding = FragmentManClothesBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -33,33 +34,52 @@ class ManClothesFragment : Fragment() {
 
         manClothesViewModel.getManClothes("men\'s clothing")
         initObserve()
-    }    private fun initObserve(){
-        manClothesViewModel.getManList.observe(viewLifecycleOwner){response ->
-            when(response){
-                is Resource.Success ->{
+        backButton()
+    }
+
+    private fun initObserve() {
+        manClothesViewModel.getManList.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is Resource.Success -> {
                     response.data?.let {
                         initAdapter(it)
+                        manClothesAdapter.setOnItemClickListener {
+                            val action =
+                                ManClothesFragmentDirections.actionManClothesFragmentToProductDetailsFragment(
+                                    it
+                                )
+                            findNavController().navigate(action)
+                        }
                     }
-                    binding.progressBar.visibility=View.GONE
+                    binding.progressBar.visibility = View.GONE
                 }
+
                 is Resource.Error -> {
-                    Toast.makeText(context,"Hata var !!",Toast.LENGTH_SHORT).show()
-                    binding.progressBar.visibility=View.VISIBLE
+                    Toast.makeText(context, "Hata var !!", Toast.LENGTH_SHORT).show()
+                    binding.progressBar.visibility = View.VISIBLE
                 }
-                is Resource.Loading ->{
-                    binding.progressBar.visibility=View.VISIBLE
+
+                is Resource.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
                 }
-                else ->{}
+
+                else -> {}
             }
         }
     }
-    private fun initAdapter(list:List<ProductModel>){
-        manClothesAdapter= ProductAdapter()
-        binding.recyclerViewMan.adapter=manClothesAdapter
+
+    private fun initAdapter(list: List<ProductModel>) {
+        manClothesAdapter = ProductAdapter()
+        binding.recyclerViewMan.adapter = manClothesAdapter
         binding.recyclerViewMan.setHasFixedSize(true)
         manClothesAdapter.differ.submitList(list)
     }
 
+    private fun backButton() {
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
 
 
+    }
 }

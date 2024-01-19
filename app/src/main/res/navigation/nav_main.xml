@@ -53,22 +53,38 @@
         android:id="@+id/electronicFragment"
         android:name="com.example.rshop.ui.fragment.electronic.ElectronicFragment"
         android:label="fragment_electronic"
-        tools:layout="@layout/fragment_electronic" />
+        tools:layout="@layout/fragment_electronic" >
+        <action
+            android:id="@+id/action_electronicFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/jeweleryFragment"
         android:name="com.example.rshop.ui.fragment.jewelery.JeweleryFragment"
         android:label="fragment_jewelery"
-        tools:layout="@layout/fragment_jewelery" />
+        tools:layout="@layout/fragment_jewelery" >
+        <action
+            android:id="@+id/action_jeweleryFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/manClothesFragment"
         android:name="com.example.rshop.ui.fragment.man.ManClothesFragment"
         android:label="fragment_man_clothes"
-        tools:layout="@layout/fragment_man_clothes" />
+        tools:layout="@layout/fragment_man_clothes" >
+        <action
+            android:id="@+id/action_manClothesFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/womanClothesFragment"
         android:name="com.example.rshop.ui.fragment.woman.WomanClothesFragment"
         android:label="fragment_woman_clothes"
-        tools:layout="@layout/fragment_woman_clothes" />
+        tools:layout="@layout/fragment_woman_clothes" >
+        <action
+            android:id="@+id/action_womanClothesFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/productDetailsFragment"
         android:name="com.example.rshop.ui.fragment.details.ProductDetailsFragment"

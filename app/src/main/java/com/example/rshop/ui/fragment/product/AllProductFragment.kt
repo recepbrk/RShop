@@ -9,10 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.rnote.adapter.ProductAdapter
-import com.example.rshop.R
 import com.example.rshop.data.model.ProductModel
 import com.example.rshop.databinding.FragmentAllProductBinding
-import com.example.rshop.ui.fragment.home.HomeFragmentDirections
 import com.example.rshop.util.resource.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,7 +19,6 @@ class AllProductFragment : Fragment() {
     private lateinit var binding: FragmentAllProductBinding
     private val allProductViewModel: AllProductViewModel by viewModels()
     lateinit var productAdapter: ProductAdapter
-
 
 
     override fun onCreateView(
@@ -34,48 +31,57 @@ class AllProductFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-     initObserve()
-
+        initObserve()
+        backButton()
     }
-private fun initObserve(){
-    allProductViewModel.getProductList.observe(viewLifecycleOwner) { response ->
-        when (response) {
-            is Resource.Success -> {
-                response.data?.let {
-                    initAdapter(it)
+
+    private fun initObserve() {
+        allProductViewModel.getProductList.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is Resource.Success -> {
+                    response.data?.let {
+                        initAdapter(it)
+                    }
+                    binding.progressBar.visibility = View.GONE
+                    productAdapter.setOnItemClickListener {
+                        val action =
+                            AllProductFragmentDirections.actionAllProductFragmentToProductDetailsFragment(
+                                it
+                            )
+                        findNavController().navigate(action)
+                    }
+
                 }
-                binding.progressBar.visibility = View.GONE
-                productAdapter.setOnItemClickListener {
-                   val action=AllProductFragmentDirections.actionAllProductFragmentToProductDetailsFragment(it)
-                    findNavController().navigate(action)
+
+                is Resource.Error -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                    Toast.makeText(context, "Hata var !! ", Toast.LENGTH_SHORT).show()
                 }
 
+                is Resource.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+
+                }
+
+                else -> {}
             }
 
-            is Resource.Error -> {
-                binding.progressBar.visibility = View.VISIBLE
-                Toast.makeText(context, "Hata var !! ", Toast.LENGTH_SHORT).show()
-            }
-
-            is Resource.Loading -> {
-                binding.progressBar.visibility = View.VISIBLE
-
-            }
-
-            else -> {}
         }
-
     }
-}
+
     private fun initAdapter(list: List<ProductModel>) {
-        productAdapter=ProductAdapter()
+        productAdapter = ProductAdapter()
         binding.recyclerViewAll.adapter = productAdapter
         binding.recyclerViewAll.setHasFixedSize(true)
         productAdapter.differ.submitList(list)
 
     }
 
+    private fun backButton() {
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
 
+
+    }
 }

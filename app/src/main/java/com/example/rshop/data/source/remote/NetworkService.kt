@@ -11,7 +11,7 @@ interface NetworkService {
     @GET(Constants.ALL_PRODUCT)
     suspend fun getAllData(): List<ProductModel>
 
-    @GET("products?limit=5")
+    @GET(Constants.FIVE_PRODUCT)
     suspend fun getFiveProduct(): List<ProductModel>
 
     @GET(Constants.DIFFERENT_CATEGORY)
@@ -19,6 +19,6 @@ interface NetworkService {
         @Path("category") category: String
     ): List<ProductModel>
 
-    @GET("products/{id}")
+    @GET(Constants.DETAILS_PRODUCT)
      suspend fun getSingleProduct(@Path("id") id: Int):ProductModel
 }

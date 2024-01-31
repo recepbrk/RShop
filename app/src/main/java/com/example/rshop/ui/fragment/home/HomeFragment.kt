@@ -1,5 +1,6 @@
 package com.example.rshop.ui.fragment.home
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -84,6 +85,7 @@ class HomeFragment : Fragment() {
 
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun initObserve() {
         homeViewModel.getFiveProductList.observe(viewLifecycleOwner) { response ->
             when (response) {
@@ -93,7 +95,8 @@ class HomeFragment : Fragment() {
 
                     }
                     productAdapter.setOnItemClickListener {
-
+                    val action =HomeFragmentDirections.actionHomeFragmentToProductDetailsFragment(it)
+                        findNavController().navigate(action)
 
                     }
                 }

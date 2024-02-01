@@ -28,6 +28,14 @@
             android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/favorite_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="24sp"
+            android:src="@drawable/favorite_icon_outline"
+            android:layout_gravity="end"/>
+
     </androidx.appcompat.widget.Toolbar>
 
     <ProgressBar

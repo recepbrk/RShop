@@ -41,7 +41,7 @@
         tools:layout="@layout/fragment_basket" />
     <fragment
         android:id="@+id/saveFragment"
-        android:name="com.example.rshop.ui.fragment.save.SaveFragment"
+        android:name="com.example.rshop.ui.fragment.favorite.FavoriteFragment"
         android:label="fragment_save"
         tools:layout="@layout/fragment_save" />
     <fragment

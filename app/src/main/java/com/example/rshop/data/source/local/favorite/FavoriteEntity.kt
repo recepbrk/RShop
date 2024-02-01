@@ -1,16 +1,12 @@
-package com.example.rshop.data.model
+package com.example.rshop.data.source.local.favorite
 
-import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.rshop.data.source.local.favorite.Rating
-import kotlinx.parcelize.Parcelize
-import kotlinx.parcelize.RawValue
+import com.example.rshop.data.model.Rating
 
-@Parcelize
 @Entity(tableName = "favorite_table")
-data class ProductModel(
+data class FavoriteEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     val id: Int = 0,
@@ -23,9 +19,14 @@ data class ProductModel(
     @ColumnInfo(name = "price")
     val price: Double,
     @ColumnInfo(name = "rating")
-    val rating: @RawValue Rating,
+    val rating: com.example.rshop.data.source.local.favorite.Rating,
     @ColumnInfo(name ="title")
     val title: String
 
-):Parcelable
-
+)
+data class Rating(
+    @ColumnInfo(name = "count")
+    val count: Int,
+    @ColumnInfo(name = "rate")
+    val rate: Double
+)

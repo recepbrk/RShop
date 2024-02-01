@@ -36,13 +36,13 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideArticleDatabase(@ApplicationContext context: Context): FavoriteDatabase =
+    fun provideProductDatabase(@ApplicationContext context: Context): FavoriteDatabase =
         Room.databaseBuilder(context, FavoriteDatabase::class.java, "productDatabase")
             .fallbackToDestructiveMigration().build()
 
     @Provides
     @Singleton
-    fun provideArticleDao(productDb: FavoriteDatabase): FavoriteDAO {
+    fun provideProductDao(productDb: FavoriteDatabase): FavoriteDAO {
         return productDb.getFavoriteFromDao()
     }
     }

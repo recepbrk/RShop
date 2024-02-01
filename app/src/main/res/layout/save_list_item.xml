@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:elevation="8dp"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="20dp">
+
+    <ImageView
+        android:id="@+id/save_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="24sp"
+        android:layout_marginTop="24sp"/>
+    <TextView
+        android:id="@+id/save_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Example"
+        android:maxLength="20"
+        android:textColor="@color/black"
+        android:layout_marginTop="24sp"
+        android:layout_marginStart="140sp"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/save_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$20"
+        android:layout_marginTop="100sp"
+        android:layout_marginStart="140sp"
+        android:fontFamily="@font/poppins_medium"
+        android:textStyle="normal"
+        android:textSize="20sp"/>
+    <RatingBar
+        android:id="@+id/save_ratingbar"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:stepSize="0.1"
+        android:layout_marginTop="70dp"
+        android:layout_marginStart="140dp"
+        android:theme="@style/RatingBar"
+        />
+
+    <TextView
+        android:id="@+id/save_star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:layout_marginStart="230dp"
+        android:textSize="15sp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="3.5" />
+
+    <ImageView
+        android:id="@+id/delete_icon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="90dp"
+        app:srcCompat="@drawable/delete" />
+</androidx.cardview.widget.CardView>

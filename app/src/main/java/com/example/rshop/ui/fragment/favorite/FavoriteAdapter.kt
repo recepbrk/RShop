@@ -9,39 +9,43 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.rshop.data.model.ProductModel
+import com.example.rshop.data.source.local.favorite.FavoriteEntity
 import com.example.rshop.databinding.SaveListItemBinding
 
 class FavoriteAdapter() : RecyclerView.Adapter<FavoriteAdapter.ProductViewHolder>() {
 
-    private val differCallBack = object : DiffUtil.ItemCallback<ProductModel>() {
-        override fun areItemsTheSame(oldItem: ProductModel, newItem: ProductModel): Boolean {
+
+    private val differCallBack = object : DiffUtil.ItemCallback<FavoriteEntity>() {
+        override fun areItemsTheSame(oldItem: FavoriteEntity, newItem: FavoriteEntity): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: ProductModel, newItem: ProductModel): Boolean {
+        override fun areContentsTheSame(oldItem: FavoriteEntity, newItem: FavoriteEntity): Boolean {
             return oldItem == newItem
         }
 
     }
-    val differ=AsyncListDiffer(this,differCallBack)
+    val differ = AsyncListDiffer(this, differCallBack)
 
 
     inner class ProductViewHolder(var binding: SaveListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(product: ProductModel) {
+        fun bind(product: FavoriteEntity) {
             binding.apply {
                 saveTitle.text = product.title
                 savePrice.text = "$" + product.price.toString()
                 saveRatingbar.rating = product.rating.rate.toFloat()
                 saveStar.text = product.rating.rate.toFloat().toString()
                 Glide.with(itemView).load(product.image).into(binding.saveImage)
-                binding.root.setOnClickListener {
-                    onItemClickListener?.let {
-                        it(product)
+                deleteIcon.setOnClickListener {
+                    onItemClickListener.let {
+                        if (it != null) {
+                            it(product)
+                        }
                     }
                 }
+
             }
         }
     }
@@ -59,10 +63,10 @@ class FavoriteAdapter() : RecyclerView.Adapter<FavoriteAdapter.ProductViewHolder
 
 
     }
+    private var onItemClickListener: ((FavoriteEntity) -> Unit)? = null
 
-    private var onItemClickListener: ((ProductModel) -> Unit)? = null
-
-    fun setOnItemClickListener(listener: (ProductModel) -> Unit) {
+    fun setOnItemClickListener(listener: (FavoriteEntity) -> Unit) {
         onItemClickListener = listener
     }
+
 }

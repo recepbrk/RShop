@@ -1,13 +1,10 @@
 package com.example.rshop.data.repository
 
 import androidx.lifecycle.LiveData
-import com.example.rshop.data.model.ProductModel
 import com.example.rshop.data.source.local.favorite.FavoriteDAO
 import com.example.rshop.data.source.local.favorite.FavoriteEntity
 import com.example.rshop.data.source.remote.NetworkService
 import com.example.rshop.util.resource.Resource
-import java.lang.Error
-import java.lang.Exception
 import javax.inject.Inject
 
 class ProductRepository @Inject constructor(private val networkService:NetworkService,private val db:FavoriteDAO) {
@@ -39,15 +36,15 @@ class ProductRepository @Inject constructor(private val networkService:NetworkSe
     }
 
 
-    suspend fun addFavoriteProduct(product:ProductModel):Long{
+    suspend fun addFavoriteProduct(product: FavoriteEntity): Long {
         return db.addProduct(product)
     }
 
-    suspend fun deleteFavoriteProduct(product: ProductModel){
+    suspend fun deleteFavoriteProduct(product: FavoriteEntity) {
         return db.deleteProduct(product)
     }
 
-    fun getFavoriteList():LiveData<List<ProductModel>>{
+    fun getFavoriteList(): LiveData<List<FavoriteEntity>> {
         return db.getFavProduct()
     }
 }

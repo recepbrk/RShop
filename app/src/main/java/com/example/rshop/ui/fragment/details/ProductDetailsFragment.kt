@@ -7,11 +7,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.example.rshop.data.source.local.favorite.FavoriteEntity
 import com.example.rshop.databinding.FragmentProductDetailsBinding
 import com.example.rshop.ui.fragment.favorite.FavoriteViewModel
 import com.example.rshop.util.resource.Resource

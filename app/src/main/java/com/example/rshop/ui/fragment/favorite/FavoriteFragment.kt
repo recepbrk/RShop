@@ -1,12 +1,11 @@
 package com.example.rshop.ui.fragment.favorite
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.rnote.adapter.ProductAdapter
 import com.example.rshop.databinding.FragmentSaveBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,23 +30,31 @@ class FavoriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
         createRecyclerView()
         observeData()
+        deleteFavoriteProduct()
     }
 
 
-    private fun createRecyclerView(){
-        favoriteAdapter=FavoriteAdapter()
-        binding.saveRecyclerView.adapter=favoriteAdapter
+    private fun createRecyclerView() {
+        favoriteAdapter = FavoriteAdapter()
+        binding.saveRecyclerView.adapter = favoriteAdapter
     }
 
-    private fun observeData(){
-        favoriteViewModel.getFavoriteList().observe(viewLifecycleOwner){
+    private fun observeData() {
+        favoriteViewModel.getFavoriteList().observe(viewLifecycleOwner) {
             favoriteAdapter.differ.submitList(it)
 
         }
 
     }
 
+    private fun deleteFavoriteProduct() {
+        favoriteAdapter.setOnItemClickListener {
+            favoriteViewModel.deleteFavoriteProduct(it)
+        }
+    }
 
 }

@@ -2,7 +2,6 @@ package com.example.rshop.ui.fragment.favorite
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rshop.data.model.ProductModel
 import com.example.rshop.data.repository.ProductRepository
 import com.example.rshop.data.source.local.favorite.FavoriteEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,11 +13,11 @@ class FavoriteViewModel @Inject constructor(private val productRepository: Produ
     ViewModel() {
 
 
-    fun addFavoriteProduct(product: ProductModel) = viewModelScope.launch {
+    fun addFavoriteProduct(product: FavoriteEntity) = viewModelScope.launch {
         productRepository.addFavoriteProduct(product)
     }
 
-    fun deleteFavoriteProduct(product: ProductModel) = viewModelScope.launch {
+    fun deleteFavoriteProduct(product: FavoriteEntity) = viewModelScope.launch {
         productRepository.deleteFavoriteProduct(product)
     }
 

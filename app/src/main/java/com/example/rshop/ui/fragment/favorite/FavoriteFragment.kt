@@ -1,5 +1,6 @@
 package com.example.rshop.ui.fragment.favorite
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +20,6 @@ class FavoriteFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,7 +27,6 @@ class FavoriteFragment : Fragment() {
         binding=FragmentSaveBinding.inflate(inflater,container,false)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -36,25 +35,40 @@ class FavoriteFragment : Fragment() {
         observeData()
         deleteFavoriteProduct()
     }
-
-
     private fun createRecyclerView() {
         favoriteAdapter = FavoriteAdapter()
         binding.saveRecyclerView.adapter = favoriteAdapter
     }
 
     private fun observeData() {
-        favoriteViewModel.getFavoriteList().observe(viewLifecycleOwner) {
-            favoriteAdapter.differ.submitList(it)
+        favoriteViewModel.getFavoriteList().observe(viewLifecycleOwner) { favoriteList ->
 
+            if (favoriteList.isEmpty()) {
+                binding.favoriteEmpty.visibility = View.VISIBLE
+                binding.favoriteEmptyTextview.visibility = View.VISIBLE
+                binding.saveRecyclerView.visibility = View.GONE
+            } else {
+                favoriteAdapter.differ.submitList(favoriteList)
+                binding.favoriteEmpty.visibility = View.GONE
+                binding.favoriteEmptyTextview.visibility = View.GONE
+            }
         }
-
     }
-
     private fun deleteFavoriteProduct() {
         favoriteAdapter.setOnItemClickListener {
-            favoriteViewModel.deleteFavoriteProduct(it)
+
+            var alertDiologBuilder = AlertDialog.Builder(context)
+            alertDiologBuilder.setTitle("Delete Product")
+            alertDiologBuilder.setMessage("Delete a product from your favorites?")
+            alertDiologBuilder.setPositiveButton("Yes") { diolog, which ->
+                favoriteViewModel.deleteFavoriteProduct(it)
+            }
+            alertDiologBuilder.setNegativeButton("No") { diolog, which ->
+                val alertDialog = alertDiologBuilder.create()
+                alertDialog.dismiss()
+            }
+            val alertDialog = alertDiologBuilder.create()
+            alertDialog.show()
         }
     }
-
 }

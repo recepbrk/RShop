@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.example.rshop.R
 import com.example.rshop.databinding.FragmentProductDetailsBinding
 import com.example.rshop.ui.fragment.favorite.FavoriteViewModel
 import com.example.rshop.util.resource.Resource
@@ -33,18 +34,15 @@ class ProductDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         productDetailsViewModel.getDetails(args.argDetails.id)
         initObserve()
         backButton()
     }
 
-
     private fun initObserve() {
         productDetailsViewModel.getdetailsList.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is Resource.Success -> {
-
                     response.data?.let {
                         binding.detailsTitle.text = it.title
                         binding.detailsPrice.text = "$" + it.price.toString()
@@ -54,35 +52,33 @@ class ProductDetailsFragment : Fragment() {
                         Glide.with(requireContext()).load(it.image).into(binding.detailsImage)
                         binding.progressBar2.visibility = View.GONE
                         binding.favoriteIcon.setOnClickListener {
-                            favoriteViewModel.addFavoriteProduct(response.data)
+
+                            var isHeartFilled = false
+                            isHeartFilled = !isHeartFilled
+                            if (isHeartFilled) {
+                                binding.favoriteIcon.setImageResource(R.drawable.favorite_icon_fill)
+                                favoriteViewModel.addFavoriteProduct(response.data)
+                            } else {
+                                binding.favoriteIcon.setImageResource(R.drawable.icon_favorite)
+                            }
                         }
                     }
-
                 }
-
                 is Resource.Error -> {
                     binding.progressBar2.visibility = View.VISIBLE
                     Toast.makeText(context, response.message, Toast.LENGTH_LONG).show()
-
                 }
-
                 is Resource.Loading -> {
                     binding.progressBar2.visibility = View.VISIBLE
-
                 }
-
                 else -> {}
             }
-
         }
     }
-
     private fun backButton() {
         binding.toolbar.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
-
-
     }
 }
 

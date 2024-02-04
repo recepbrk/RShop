@@ -58,6 +58,7 @@ class ProductDetailsFragment : Fragment() {
                             if (isHeartFilled) {
                                 binding.favoriteIcon.setImageResource(R.drawable.favorite_icon_fill)
                                 favoriteViewModel.addFavoriteProduct(response.data)
+                                Toast.makeText(context,"Product Added to Favorites!",Toast.LENGTH_SHORT).show()
                             } else {
                                 binding.favoriteIcon.setImageResource(R.drawable.icon_favorite)
                             }

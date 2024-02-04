@@ -52,6 +52,7 @@ class HomeFragment : Fragment() {
     }
 
 
+
     private fun setupViewFlipper() {
         val imageList = arrayListOf(
             R.drawable.banner1,

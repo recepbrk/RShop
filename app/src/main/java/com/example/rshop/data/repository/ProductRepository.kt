@@ -1,13 +1,15 @@
 package com.example.rshop.data.repository
 
 import androidx.lifecycle.LiveData
+import com.example.rshop.data.source.local.basket.BasketDAO
+import com.example.rshop.data.source.local.basket.BasketEntity
 import com.example.rshop.data.source.local.favorite.FavoriteDAO
 import com.example.rshop.data.source.local.favorite.FavoriteEntity
 import com.example.rshop.data.source.remote.NetworkService
 import com.example.rshop.util.resource.Resource
 import javax.inject.Inject
 
-class ProductRepository @Inject constructor(private val networkService:NetworkService,private val db:FavoriteDAO) {
+class ProductRepository @Inject constructor(private val networkService:NetworkService,private val db:FavoriteDAO,private val basketdb :BasketDAO) {
 
 
     suspend fun getAllProduct() = try {
@@ -46,5 +48,17 @@ class ProductRepository @Inject constructor(private val networkService:NetworkSe
 
     fun getFavoriteList(): LiveData<List<FavoriteEntity>> {
         return db.getFavProduct()
+    }
+
+    suspend fun addBasketProduct(product: BasketEntity): Long {
+        return basketdb.addProduct(product)
+    }
+
+    suspend fun deleteBasketProduct(product: BasketEntity) {
+        return basketdb.deleteProduct(product)
+    }
+
+    fun getBasketList(): LiveData<List<BasketEntity>> {
+        return basketdb.getFavProduct()
     }
 }

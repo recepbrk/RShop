@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="130dp"
+    android:elevation="2dp"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="10dp">
+
+    <ImageView
+        android:id="@+id/basket_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+    android:layout_margin="12sp"/>
+
+    <ImageView
+        android:id="@+id/basket_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/close"
+        android:layout_marginTop="12sp"
+        android:layout_marginStart="350dp"/>
+    <TextView
+        android:id="@+id/basket_title"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Example"
+        android:maxLength="20"
+        android:textColor="@color/black"
+        android:layout_marginTop="12sp"
+        android:layout_marginStart="140sp"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/basket_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$20"
+        android:textColor="@color/bej"
+        android:layout_marginTop="70sp"
+        android:layout_marginStart="330sp"
+        android:fontFamily="@font/poppins_medium"
+        android:textStyle="normal"
+        android:textSize="25sp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginStart="140dp">
+
+            <ImageView
+                android:id="@+id/basket_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/plus"
+                android:padding="8dp"/>
+            <ImageView
+                android:id="@+id/basket_remove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/remove"
+                android:layout_marginStart="80dp"
+                android:padding="8dp"/>
+            <TextView
+                android:id="@+id/basket_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7"
+                android:layout_marginStart="54dp"
+                android:textSize="20sp"
+                android:fontFamily="@font/poppins_medium"
+                android:layout_marginTop="6dp"/>
+        </androidx.cardview.widget.CardView>
+
+
+
+
+</androidx.cardview.widget.CardView>

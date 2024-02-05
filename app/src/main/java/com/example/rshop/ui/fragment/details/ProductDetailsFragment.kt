@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.rshop.R
 import com.example.rshop.databinding.FragmentProductDetailsBinding
+import com.example.rshop.ui.fragment.basket.BasketViewModel
 import com.example.rshop.ui.fragment.favorite.FavoriteViewModel
 import com.example.rshop.util.resource.Resource
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,6 +22,7 @@ class ProductDetailsFragment : Fragment() {
     private lateinit var binding: FragmentProductDetailsBinding
     private val productDetailsViewModel: ProductDetailsViewModel by viewModels()
     private val favoriteViewModel :FavoriteViewModel by viewModels ()
+    private val basketViewModel:BasketViewModel by viewModels ()
     private val args: ProductDetailsFragmentArgs by navArgs()
 
 
@@ -35,6 +37,7 @@ class ProductDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         productDetailsViewModel.getDetails(args.argDetails.id)
+
         initObserve()
         backButton()
     }
@@ -51,6 +54,9 @@ class ProductDetailsFragment : Fragment() {
                         binding.detailesDescription.text = it.description
                         Glide.with(requireContext()).load(it.image).into(binding.detailsImage)
                         binding.progressBar2.visibility = View.GONE
+                        binding.basket.setOnClickListener {
+                       //     basketViewModel.addBasketProduct(response.data)
+                        }
                         binding.favoriteIcon.setOnClickListener {
 
                             var isHeartFilled = false

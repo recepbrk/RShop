@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rshop.data.repository.ProductRepository
+import com.example.rshop.data.source.local.basket.BasketEntity
 import com.example.rshop.data.source.local.favorite.FavoriteEntity
 import com.example.rshop.util.resource.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel

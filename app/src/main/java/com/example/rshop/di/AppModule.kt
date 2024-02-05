@@ -2,6 +2,8 @@ package com.example.rshop.di
 
 import android.content.Context
 import androidx.room.Room
+import com.example.rshop.data.source.local.basket.BasketDAO
+import com.example.rshop.data.source.local.basket.BasketDatabase
 import com.example.rshop.data.source.local.favorite.FavoriteDAO
 import com.example.rshop.data.source.local.favorite.FavoriteDatabase
 import com.example.rshop.data.source.remote.NetworkService
@@ -44,5 +46,16 @@ object AppModule {
     @Singleton
     fun provideProductDao(productDb: FavoriteDatabase): FavoriteDAO {
         return productDb.getFavoriteFromDao()
+    }
+    @Provides
+    @Singleton
+    fun provideProductBasketDatabase(@ApplicationContext context: Context): BasketDatabase =
+        Room.databaseBuilder(context, BasketDatabase::class.java, "basketDatabase")
+            .fallbackToDestructiveMigration().build()
+
+    @Provides
+    @Singleton
+    fun provideProductBasketDao(productDb: BasketDatabase): BasketDAO {
+        return productDb.getBasketFromDao()
     }
     }

@@ -104,7 +104,7 @@
                 android:layout_marginTop="25dp"/>
 
             <Button
-                android:id="@+id/basket"
+                android:id="@+id/basket_button"
                 android:layout_width="150dp"
                 android:layout_height="60dp"
                 android:layout_gravity="end"
@@ -112,7 +112,6 @@
                 android:text="Add to Basket"
                 android:textSize="14sp"
                 android:backgroundTint="@color/bej"
-
                 android:fontFamily="@font/poppins_medium"/>
 
         </androidx.cardview.widget.CardView>

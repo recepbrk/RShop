@@ -14,10 +14,16 @@ import javax.inject.Inject
 @HiltViewModel
 class ProductDetailsViewModel @Inject constructor(private val productRepository: ProductRepository):ViewModel() {
     val getdetailsList: MutableLiveData<Resource<FavoriteEntity>> = MutableLiveData()
+    val getbasketList:MutableLiveData<Resource<BasketEntity>> = MutableLiveData()
 
     fun getDetails(id:Int) = viewModelScope.launch {
 
         getdetailsList.postValue(productRepository.getSingleProduct(id))
+    }
+
+    fun getBasketDetails(id:Int) = viewModelScope.launch {
+
+        getbasketList.postValue(productRepository.getSingleBasketProduct(id))
     }
 
 }

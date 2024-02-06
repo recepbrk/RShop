@@ -37,7 +37,7 @@ class BasketAdapter(private val basketViewModel: BasketViewModel) :
                 basketPrice.text = "$" + product.price
                 Glide.with(itemView).load(product.image).into(binding.basketImage)
                 basketClose.setOnClickListener {
-                    basketViewModel.deleteBasketProduct(product)
+                   basketViewModel.deleteBasketProduct(product)
                 }
             }
 

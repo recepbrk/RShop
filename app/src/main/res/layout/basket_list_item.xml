@@ -30,18 +30,18 @@
         android:layout_marginTop="12sp"
         android:layout_marginStart="140sp"
         android:fontFamily="@font/poppins_medium"
-        android:textSize="20sp"/>
+        android:textSize="15sp"/>
     <TextView
         android:id="@+id/basket_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="$20"
         android:textColor="@color/bej"
-        android:layout_marginTop="70sp"
-        android:layout_marginStart="330sp"
+        android:layout_marginTop="80sp"
+        android:layout_marginStart="310sp"
         android:fontFamily="@font/poppins_medium"
         android:textStyle="normal"
-        android:textSize="25sp"/>
+        android:textSize="15sp"/>
 
         <androidx.cardview.widget.CardView
             android:layout_width="120dp"
@@ -66,9 +66,9 @@
                 android:id="@+id/basket_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="7"
+                android:text="1"
                 android:layout_marginStart="54dp"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:fontFamily="@font/poppins_medium"
                 android:layout_marginTop="6dp"/>
         </androidx.cardview.widget.CardView>

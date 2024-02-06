@@ -36,6 +36,11 @@ class ProductRepository @Inject constructor(private val networkService:NetworkSe
     } catch (exception: Exception) {
         Resource.Error(exception.message.orEmpty())
     }
+    suspend fun getSingleBasketProduct(id: Int) = try {
+        Resource.Success(networkService.getSingleBasketProduct(id))
+    } catch (exception: Exception) {
+        Resource.Error(exception.message.orEmpty())
+    }
 
 
     suspend fun addFavoriteProduct(product: FavoriteEntity): Long {

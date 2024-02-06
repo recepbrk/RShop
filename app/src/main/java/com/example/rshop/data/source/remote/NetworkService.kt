@@ -1,6 +1,7 @@
 package com.example.rshop.data.source.remote
 
 import com.example.rshop.data.model.ProductModel
+import com.example.rshop.data.source.local.basket.BasketEntity
 import com.example.rshop.data.source.local.favorite.FavoriteEntity
 import com.example.rshop.util.constants.Constants
 import retrofit2.http.GET
@@ -20,4 +21,6 @@ interface NetworkService {
 
     @GET(Constants.DETAILS_PRODUCT)
     suspend fun getSingleProduct(@Path("id") id: Int): FavoriteEntity
+    @GET(Constants.DETAILS_PRODUCT)
+    suspend fun getSingleBasketProduct(@Path("id") id: Int): BasketEntity
 }

@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="130dp"
     android:elevation="2dp"
     android:background="#E6EAE9"
     android:layout_margin="8dp"
@@ -12,8 +12,8 @@
         android:id="@+id/save_image"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="24sp"
-        android:layout_marginTop="24sp"/>
+        android:layout_marginStart="12sp"
+        android:layout_marginTop="12sp"/>
     <TextView
         android:id="@+id/save_title"
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
         android:layout_marginTop="24sp"
         android:layout_marginStart="140sp"
         android:fontFamily="@font/poppins_medium"
-        android:textSize="20sp"/>
+        android:textSize="15sp"/>
     <TextView
         android:id="@+id/save_price"
         android:layout_width="wrap_content"
@@ -34,7 +34,7 @@
         android:layout_marginStart="140sp"
         android:fontFamily="@font/poppins_medium"
         android:textStyle="normal"
-        android:textSize="20sp"/>
+        android:textSize="15sp"/>
     <RatingBar
         android:id="@+id/save_ratingbar"
         style="?android:attr/ratingBarStyleSmall"
@@ -63,6 +63,6 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="300dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="70dp"
         app:srcCompat="@drawable/delete" />
 </androidx.cardview.widget.CardView>

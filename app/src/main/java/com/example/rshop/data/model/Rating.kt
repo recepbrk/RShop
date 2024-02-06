@@ -6,8 +6,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Rating(
-    @ColumnInfo(name = "count")
     val count: Int,
-    @ColumnInfo(name = "rate")
     val rate: Double
 ):Parcelable

@@ -37,11 +37,40 @@ class ProductDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         productDetailsViewModel.getDetails(args.argDetails.id)
+        productDetailsViewModel.getBasketDetails(args.argDetails.id)
 
         initObserve()
+        initBasketObserve()
         backButton()
     }
 
+    private fun initBasketObserve() {
+        productDetailsViewModel.getbasketList.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is Resource.Success -> {
+                    response.data?.let {
+                        binding.basketButton.setOnClickListener {
+                            basketViewModel.addBasketProduct(response.data)
+                            Toast.makeText(context, "Product Added to Basket!", Toast.LENGTH_SHORT)
+                                .show()
+
+                        }
+                    }
+                }
+
+                is Resource.Error -> {
+                    binding.progressBar2.visibility = View.VISIBLE
+                    Toast.makeText(context, response.message, Toast.LENGTH_LONG).show()
+                }
+
+                is Resource.Loading -> {
+                    binding.progressBar2.visibility = View.VISIBLE
+                }
+
+                else -> {}
+            }
+        }
+    }
     private fun initObserve() {
         productDetailsViewModel.getdetailsList.observe(viewLifecycleOwner) { response ->
             when (response) {
@@ -54,9 +83,7 @@ class ProductDetailsFragment : Fragment() {
                         binding.detailesDescription.text = it.description
                         Glide.with(requireContext()).load(it.image).into(binding.detailsImage)
                         binding.progressBar2.visibility = View.GONE
-                        binding.basket.setOnClickListener {
-                       //     basketViewModel.addBasketProduct(response.data)
-                        }
+
                         binding.favoriteIcon.setOnClickListener {
 
                             var isHeartFilled = false

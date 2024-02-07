@@ -9,7 +9,11 @@ import com.example.rshop.data.source.remote.NetworkService
 import com.example.rshop.util.resource.Resource
 import javax.inject.Inject
 
-class ProductRepository @Inject constructor(private val networkService:NetworkService,private val db:FavoriteDAO,private val basketdb :BasketDAO) {
+class ProductRepository @Inject constructor(
+    private val networkService: NetworkService,
+    private val favoritedb: FavoriteDAO,
+    private val basketdb: BasketDAO
+) {
 
 
     suspend fun getAllProduct() = try {
@@ -44,15 +48,15 @@ class ProductRepository @Inject constructor(private val networkService:NetworkSe
 
 
     suspend fun addFavoriteProduct(product: FavoriteEntity): Long {
-        return db.addProduct(product)
+        return favoritedb.addProduct(product)
     }
 
     suspend fun deleteFavoriteProduct(product: FavoriteEntity) {
-        return db.deleteProduct(product)
+        return favoritedb.deleteProduct(product)
     }
 
     fun getFavoriteList(): LiveData<List<FavoriteEntity>> {
-        return db.getFavProduct()
+        return favoritedb.getFavProduct()
     }
 
     suspend fun addBasketProduct(product: BasketEntity): Long {
@@ -65,5 +69,19 @@ class ProductRepository @Inject constructor(private val networkService:NetworkSe
 
     fun getBasketList(): LiveData<List<BasketEntity>> {
         return basketdb.getFavProduct()
+    }
+
+    suspend fun increaseBasketProductQuantity(product: BasketEntity) {
+        basketdb.increaseBasketProductQuantity(product.id)
+    }
+
+    suspend fun decreaseBasketProductQuantity(product: BasketEntity) {
+        val currentQuantity = basketdb.getBasketProductQuantity(product.id.toLong())
+        if (currentQuantity > 1) {
+            basketdb.decreaseBasketProductQuantity(product.id)
+        } else {
+
+            deleteBasketProduct(product)
+        }
     }
 }

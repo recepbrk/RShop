@@ -14,7 +14,7 @@
     android:layout_margin="12sp"/>
 
     <ImageView
-        android:id="@+id/basket_close"
+        android:id="@+id/basket_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/close"
@@ -56,24 +56,23 @@
                 android:src="@drawable/plus"
                 android:padding="8dp"/>
             <ImageView
-                android:id="@+id/basket_remove"
+                android:id="@+id/basket_minus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/remove"
                 android:layout_marginStart="80dp"
                 android:padding="8dp"/>
+
             <TextView
                 android:id="@+id/basket_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1"
                 android:layout_marginStart="54dp"
-                android:textSize="15sp"
+                android:layout_marginTop="6dp"
                 android:fontFamily="@font/poppins_medium"
-                android:layout_marginTop="6dp"/>
+                android:text="1"
+                android:textSize="15sp" />
         </androidx.cardview.widget.CardView>
-
-
 
 
 </androidx.cardview.widget.CardView>

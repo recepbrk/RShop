@@ -19,9 +19,10 @@ data class BasketEntity(
     val price: Double,
     @ColumnInfo(name = "rating")
     val rating: com.example.rshop.data.source.local.favorite.Rating,
-    @ColumnInfo(name ="title")
-    val title: String
-
+    @ColumnInfo(name = "title")
+    val title: String,
+    @ColumnInfo(name = "quantity")
+    var quantity: Int = 1
 )
 data class Rating(
     @ColumnInfo(name = "count")

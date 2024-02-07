@@ -4,10 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rshop.data.repository.ProductRepository
 import com.example.rshop.data.source.local.basket.BasketEntity
-import com.example.rshop.data.source.local.favorite.FavoriteEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 @HiltViewModel
 class BasketViewModel @Inject constructor(private val productRepository: ProductRepository):ViewModel() {
 
@@ -20,4 +20,18 @@ class BasketViewModel @Inject constructor(private val productRepository: Product
     }
 
     fun getBasketList() = productRepository.getBasketList()
+
+
+    fun increaseBasketProductQuantity(product: BasketEntity) {
+        viewModelScope.launch {
+            productRepository.increaseBasketProductQuantity(product)
+
+        }
+    }
+
+    fun decreaseBasketProductQuantity(product: BasketEntity) {
+        viewModelScope.launch {
+            productRepository.decreaseBasketProductQuantity(product)
+        }
+    }
 }

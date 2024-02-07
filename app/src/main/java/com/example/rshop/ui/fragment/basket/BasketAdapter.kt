@@ -11,9 +11,14 @@ import com.bumptech.glide.Glide
 import com.example.rshop.data.source.local.basket.BasketEntity
 import com.example.rshop.databinding.BasketListItemBinding
 
-class BasketAdapter(private val basketViewModel: BasketViewModel) :
-    RecyclerView.Adapter<BasketAdapter.BasketViewHolder>() {
+private var onPlusClick: ((BasketEntity) -> Unit)? = null
+private var onMinusClick: ((BasketEntity) -> Unit)? = null
+private var onDeleteClick: ((BasketEntity) -> Unit)? = null
 
+
+
+class BasketAdapter() :
+    RecyclerView.Adapter<BasketAdapter.BasketViewHolder>() {
 
     private val differCallBack = object : DiffUtil.ItemCallback<BasketEntity>() {
         override fun areItemsTheSame(oldItem: BasketEntity, newItem: BasketEntity): Boolean {
@@ -30,20 +35,35 @@ class BasketAdapter(private val basketViewModel: BasketViewModel) :
 
     inner class BasketViewHolder(var binding: BasketListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        @SuppressLint("SetTextI18n")
+        @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
         fun bind(product: BasketEntity) {
             binding.apply {
                 basketTitle.text = product.title
-                basketPrice.text = "$" + product.price
                 Glide.with(itemView).load(product.image).into(binding.basketImage)
-                basketClose.setOnClickListener {
-                   basketViewModel.deleteBasketProduct(product)
+                basketNumber.text = product.quantity.toString()
+                basketPrice.text = product.price.toString()
+
+                val total_price =
+                    basketNumber.text.toString().toDouble() * basketPrice.text.toString().toDouble()
+                basketPrice.text = "$" + total_price.toString().toDouble()
+
+              //  totalBasketPrice += basketPrice.toString().toDouble()
+
+
+
+
+                basketPlus.setOnClickListener {
+                    onPlusClick?.invoke(product)
+                }
+                basketMinus.setOnClickListener {
+                    onMinusClick?.invoke(product)
+                }
+                basketDelete.setOnClickListener {
+                    onDeleteClick?.invoke(product)
                 }
             }
-
         }
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BasketViewHolder {
         return BasketViewHolder(
             BasketListItemBinding.inflate(
@@ -61,8 +81,18 @@ class BasketAdapter(private val basketViewModel: BasketViewModel) :
     override fun onBindViewHolder(holder: BasketViewHolder, position: Int) {
         holder.bind(differ.currentList[position])
 
-
     }
 
+    fun setOnPlusClickListener(listener: (BasketEntity) -> Unit) {
+        onPlusClick = listener
+    }
+
+    fun setOnMinusClickListener(listener: (BasketEntity) -> Unit) {
+        onMinusClick = listener
+    }
+
+    fun setDeleteClickListener(listener: (BasketEntity) -> Unit) {
+        onDeleteClick = listener
+    }
 
 }

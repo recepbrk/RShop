@@ -6,10 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-
-import com.example.rshop.R
 import com.example.rshop.databinding.FragmentBasketBinding
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.internal.notify
 
 @AndroidEntryPoint
 class BasketFragment : Fragment() {
@@ -32,16 +31,30 @@ class BasketFragment : Fragment() {
     }
 
     private fun observeData() {
-        basketViewModel.getBasketList().observe(viewLifecycleOwner){basketList ->
+        basketViewModel.getBasketList().observe(viewLifecycleOwner){ basketList ->
             basketAdapter.differ.submitList(basketList)
+
+            basketAdapter.setDeleteClickListener {
+                basketViewModel.deleteBasketProduct(it)
+
+            }
+            basketAdapter.setOnPlusClickListener { selectedItem ->
+            basketViewModel.increaseBasketProductQuantity(selectedItem)
+            }
+            basketAdapter.setOnMinusClickListener { selectedItem ->
+                basketViewModel.decreaseBasketProductQuantity(selectedItem)
+
+            }
+        //   binding.totalPrice.text= basketAdapter.getTotalBasketPrice().toString()
 
         }
     }
 
     private fun createRecyclerView() {
-        basketAdapter = BasketAdapter(basketViewModel)
-        binding.saveRecyclerView.adapter=basketAdapter
-    }
+        basketAdapter = BasketAdapter()
+        binding.basketRecyclerView.adapter = basketAdapter
 
+
+    }
 
 }
